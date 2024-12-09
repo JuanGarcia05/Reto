@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+        /* Estilos del carrito */
+        #carrito {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #carrito img {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+        #carrito span {
+            font-weight: bold;
+        }
+
+        /* Estilos para la sección del carrito */
+        #seccion-carrito {
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            width: 90%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #lista-carrito {
+            list-style-type: none;
+            padding: 0;
+        }
+        .botones button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .botones button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Icono del carrito -->
+<div id="carrito">
+    <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito">
+    <span id="cantidad-carrito">0</span>
+</div>
+
+<!-- Sección del carrito -->
+<section id="seccion-carrito">
+    <h4>Carrito de Compras</h4>
+    <ul id="lista-carrito">
+        <!-- Aquí se llenarán los productos dinámicamente -->
+    </ul>
+    <p><strong>Total: </strong><span id="total-carrito">0 COP</span></p>
+    <div class="botones">
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
+        <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+        <button onclick="volverAlInicio()">Volver al Inicio</button>
+    </div>
+</section>
+
+<script>
+    // Recuperar carrito desde localStorage o crear uno vacío
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Función para actualizar el ícono del carrito
+    function actualizarIconoCarrito() {
+        const cantidadTotal = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+        document.getElementById('cantidad-carrito').textContent = cantidadTotal;
+    }
+
+    // Mostrar los productos en el carrito
+    function mostrarCarrito() {
+        const listaCarrito = document.getElementById('lista-carrito');
+        const totalCarrito = document.getElementById('total-carrito');
+
+        // Limpiar la lista actual
+        listaCarrito.innerHTML = '';
+        let total = 0;
+
+        if (carrito.length === 0) {
+            listaCarrito.innerHTML = '<li>No hay productos en el carrito.</li>';
+        } else {
+            carrito.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.cantidad} x ${item.nombre} - ${(item.precio * item.cantidad).toLocaleString('es-CO')} COP`;
+                listaCarrito.appendChild(li);
+                total += item.precio * item.cantidad;
+            });
+        }
+
+        totalCarrito.textContent = `${total.toLocaleString('es-CO')} COP`;
+    }
+
+    // Función para vaciar el carrito
+    function vaciarCarrito() {
+        carrito = [];
+        localStorage.removeItem('carrito'); // Eliminar del almacenamiento local
+        mostrarCarrito();
+        actualizarIconoCarrito();
+    }
+
+    // Función para finalizar la compra
+    function finalizarCompra() {
+        if (carrito.length === 0) {
+            alert("El carrito está vacío. Agrega productos antes de finalizar la compra.");
+        } else {
+            alert("Compra finalizada. ¡Gracias por tu compra!");
+            vaciarCarrito();
+        }
+    }
+
+    // Función para redirigir al inicio
+    function volverAlInicio() {
+        window.location.href = 'index.html'; // Cambia al nombre correcto de tu página principal
+    }
+
+    // Inicializar el carrito al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        mostrarCarrito();
+        actualizarIconoCarrito();
+    });
+</script>
+
+</body>
+</html>

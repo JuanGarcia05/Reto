@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collares para Perros</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylecarrito.css">
+
+</head>
+<body>
+    <header>
+        <h1>Collares para Perros</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Volver a la tienda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Collares para Perros</h2>
+        <p>Encuentra los mejores collares para tu perro en diferentes tamaños y colores.</p>
+        <div class="productos">
+            <div class="producto">
+                <img src="imagenes/collar1.jpg" alt="Collar de cuero" class="producto-imagen">
+                <p>Collar de cuero</p>
+                <p class="precio">€15.99</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar2.jpg" alt="Collar de tela" class="producto-imagen">
+                <p>Collar de tela</p>
+                <p class="precio">€10.50</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar3.jpg" alt="Collar de nylon" class="producto-imagen">
+                <p>Collar de nylon</p>
+                <p class="precio">€12.00</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar4.jpg" alt="Collar con diseño" class="producto-imagen">
+                <p>Collar con diseño</p>
+                <p class="precio">€18.00</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar5.jpg" alt="Collar reflectante" class="producto-imagen">
+                <p>Collar reflectante</p>
+                <p class="precio">€13.75</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar6.jpg" alt="Collar de cuero negro" class="producto-imagen">
+                <p>Collar de cuero negro</p>
+                <p class="precio">€16.50</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar7.jpg" alt="Collar ajustable" class="producto-imagen">
+                <p>Collar ajustable</p>
+                <p class="precio">€9.99</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar8.jpg" alt="Collar con medalla" class="producto-imagen">
+                <p>Collar con medalla</p>
+                <p class="precio">€14.25</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar9.jpg" alt="Collar de lujo" class="producto-imagen">
+                <p>Collar de lujo</p>
+                <p class="precio">€20.00</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar10.jpg" alt="Collar de tela suave" class="producto-imagen">
+                <p>Collar de tela suave</p>
+                <p class="precio">€11.50</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar11.jpg" alt="Collar con correa" class="producto-imagen">
+                <p>Collar con correa</p>
+                <p class="precio">€17.80</p>
+            </div>
+            <div class="producto">
+                <img src="imagenes/collar12.jpg" alt="Collar deportivo" class="producto-imagen">
+                <p>Collar deportivo</p>
+                <p class="precio">€19.50</p>
+            </div>
+        </div>
+    </section>
+    <script>
+        function agregarAlCarrito(nombre, precio, cantidadId) {
+            const cantidad = parseInt(document.getElementById(cantidadId).value);
+            if (cantidad > 0) {
+                // Recuperar productos actuales del carrito en localStorage
+                let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    
+                // Agregar el producto
+                carrito.push({ nombre, precio, cantidad });
+    
+                // Guardar el carrito actualizado
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+    
+                alert(`${cantidad} x ${nombre} agregado(s) al carrito.`);
+            } else {
+                alert("Por favor, selecciona una cantidad válida.");
+            }
+        }
+    </script>
+    
+
+    <footer>
+        <p>&copy; 2024 Tienda de Implementos para Perros. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

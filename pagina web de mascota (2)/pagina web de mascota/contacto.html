@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Implementos para Mascotas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Aquí puedes agregar tus estilos como en el ejemplo anterior */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f7f1f1;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 1px solid #252323;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #e71616;
+            color: rgb(110, 88, 88);
+        }
+
+        .contacto {
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .contacto h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+.contacto {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.contacto h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contacto form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contacto form label {
+    font-weight: bold;
+}
+
+.contacto form input, 
+.contacto form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.contacto form button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contacto form button:hover {
+    background-color: #555;
+}
+
+.info-contacto {
+    margin-top: 20px;
+}
+
+.info-contacto p, .info-contacto ul {
+    margin: 10px 0;
+}
+
+.info-contacto ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-contacto ul li {
+    margin-bottom: 5px;
+}
+
+.redes-sociales {
+    display: flex;
+    gap: 10px;
+}
+
+.redes-sociales li {
+    display: inline;
+}
+
+.redes-sociales a {
+    color: #333;
+    text-decoration: none;
+}
+
+.redes-sociales a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contacto - Implementos para Mascotas</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Regresar al inicio</a>
+        <!-- Agregar más enlaces si es necesario -->
+    </nav>
+
+    <section class="contacto">
+        <h2>Contacto</h2>
+        <form action="#" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <div class="info-contacto">
+            <p><strong>Teléfono:</strong> +34 123 456 789</p>
+            <p><strong>Correo Electrónico:</strong> contacto@tiendadeperros.com</p>
+            <p><strong>Dirección:</strong> Calle de los Ejemplos, 123, 28001 Madrid, España</p>
+            <p><strong>Horario de Atención:</strong></p>
+            <ul>
+                <li>Lunes a Viernes: 9:00 AM - 6:00 PM</li>
+                <li>Sábados: 10:00 AM - 2:00 PM</li>
+                <li>Domingos: Cerrado</li>
+            </ul>
+            <p>Síguenos en nuestras redes sociales:</p>
+            <ul style="list-style: none; padding: 0; display: flex; justify-content: center; gap: 10px;">
+                <li><a href="#" style="color: #6a0dad; text-decoration: none;">Facebook</a></li>
+                <li><a href="#" style="color: #6a0dad; text-decoration: none;">Instagram</a></li>
+                <li><a href="#" style="color: #6a0dad; text-decoration: none;">Twitter</a></li>
+            </ul>
+        </div>
+    </section>
+
+</body>
+</html>

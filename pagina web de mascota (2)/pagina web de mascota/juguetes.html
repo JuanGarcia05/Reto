@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juguetes para Perros</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Vincula tu archivo CSS -->
+    <link rel="stylesheet" href="stylecarrito.css">
+
+</head>
+<body>
+
+    <header>
+        <h1>Bienvenidos a la Tienda de Juguetes para Perros</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="collares.html">Collares</a></li>
+                <li><a href="alimentacion.html">Alimentación</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección de Juguetes -->
+    <section id="juguetes">
+        <h2>Juguetes para Perros</h2>
+        <p>Juguetes que harán feliz a tu perro mientras se ejercita.</p>
+        <div class="productos">
+            <div class="producto">
+                <img src="juguete1.jpg" alt="Pelota interactiva">
+                <p>Pelota interactiva</p>
+                <p class="precio">€7.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete2.jpg" alt="Frisbee de plástico">
+                <p>Frisbee de plástico</p>
+                <p class="precio">€5.49</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete3.jpg" alt="Pelota de goma">
+                <p>Pelota de goma</p>
+                <p class="precio">€8.50</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete4.jpg" alt="Hueso de goma">
+                <p>Hueso de goma</p>
+                <p class="precio">€6.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete5.jpg" alt="Frisbee de tela">
+                <p>Frisbee de tela</p>
+                <p class="precio">€4.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete6.jpg" alt="Pelota para masticar">
+                <p>Pelota para masticar</p>
+                <p class="precio">€9.25</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete7.jpg" alt="Juguete de cuerda">
+                <p>Juguete de cuerda</p>
+                <p class="precio">€5.79</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete8.jpg" alt="Squeaky Ball">
+                <p>Squeaky Ball</p>
+                <p class="precio">€4.25</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete9.jpg" alt="Hueso de nylon">
+                <p>Hueso de nylon</p>
+                <p class="precio">€6.75</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete10.jpg" alt="Bola saltarina">
+                <p>Bola saltarina</p>
+                <p class="precio">€3.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete11.jpg" alt="Frisbee de caucho">
+                <p>Frisbee de caucho</p>
+                <p class="precio">€7.50</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="juguete12.jpg" alt="Pelota de tenis">
+                <p>Pelota de tenis</p>
+                <p class="precio">€2.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        function agregarAlCarrito(nombre, precio, cantidadId) {
+            const cantidad = parseInt(document.getElementById(cantidadId).value);
+            if (cantidad > 0) {
+                // Recuperar productos actuales del carrito en localStorage
+                let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    
+                // Agregar el producto
+                carrito.push({ nombre, precio, cantidad });
+    
+                // Guardar el carrito actualizado
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+    
+                alert(`${cantidad} x ${nombre} agregado(s) al carrito.`);
+            } else {
+                alert("Por favor, selecciona una cantidad válida.");
+            }
+        }
+    </script>
+    
+    <footer>
+        <p>&copy; 2024 Tienda de Juguetes para Perros. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Vincula tu archivo JS -->
+</body>
+</html>

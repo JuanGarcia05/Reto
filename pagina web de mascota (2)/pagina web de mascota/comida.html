@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alimentación para Perros</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Vincula tu archivo CSS -->
+    <link rel="stylesheet" href="stylecarrito.css">
+
+</head>
+<body>
+
+    <header>
+        <h1>Bienvenidos a la Tienda de Alimentación para Perros</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="collares.html">Collares</a></li>
+                <li><a href="juguetes.html">Juguetes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección de Alimentación -->
+    <section id="alimentacion">
+        <h2>Alimentación para Perros</h2>
+        <p>Comida saludable y balanceada para perros de todas las razas.</p>
+        <div class="productos">
+            <div class="producto">
+                <img src="comida1.jpg" alt="Comida premium">
+                <p>Comida premium</p>
+                <p class="precio">€29.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida2.jpg" alt="Snacks naturales">
+                <p>Snacks naturales</p>
+                <p class="precio">€12.50</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida3.jpg" alt="Comida seca">
+                <p>Comida seca</p>
+                <p class="precio">€24.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida4.jpg" alt="Comida húmeda">
+                <p>Comida húmeda</p>
+                <p class="precio">€18.00</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida5.jpg" alt="Barras energéticas">
+                <p>Barras energéticas</p>
+                <p class="precio">€5.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida6.jpg" alt="Snacks de pollo">
+                <p>Snacks de pollo</p>
+                <p class="precio">€8.49</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida7.jpg" alt="Alimento balanceado">
+                <p>Alimento balanceado</p>
+                <p class="precio">€22.00</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida8.jpg" alt="Comida natural">
+                <p>Comida natural</p>
+                <p class="precio">€20.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida9.jpg" alt="Pechos de pollo">
+                <p>Pechos de pollo deshidratados</p>
+                <p class="precio">€15.00</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida10.jpg" alt="Comida orgánica">
+                <p>Comida orgánica</p>
+                <p class="precio">€30.00</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida11.jpg" alt="Snacks de cordero">
+                <p>Snacks de cordero</p>
+                <p class="precio">€9.99</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+            <div class="producto">
+                <img src="comida12.jpg" alt="Comida para perros pequeños">
+                <p>Comida para perros pequeños</p>
+                <p class="precio">€18.50</p>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        function agregarAlCarrito(nombre, precio, cantidadId) {
+            const cantidad = parseInt(document.getElementById(cantidadId).value);
+            if (cantidad > 0) {
+                // Recuperar productos actuales del carrito en localStorage
+                let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    
+                // Agregar el producto
+                carrito.push({ nombre, precio, cantidad });
+    
+                // Guardar el carrito actualizado
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+    
+                alert(`${cantidad} x ${nombre} agregado(s) al carrito.`);
+            } else {
+                alert("Por favor, selecciona una cantidad válida.");
+            }
+        }
+    </script>
+    
+    <footer>
+        <p>&copy; 2024 Tienda de Alimentación para Perros. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Vincula tu archivo JS -->
+</body>
+</html>

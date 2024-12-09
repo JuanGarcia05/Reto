@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Mascotas</title>
+</head>
+<body>
+  <h1>Tienda de Mascotas</h1>
+  
+  <!-- Productos -->
+  <div class="producto">
+    <h3>Comida para perros</h3>
+    <p>Precio: $10.00</p>
+    <button class="agregar" data-id="1" data-nombre="Comida para perros" data-precio="10.00">Agregar al carrito</button>
+  </div>
+  <div class="producto">
+    <h3>Juguete para gatos</h3>
+    <p>Precio: $5.00</p>
+    <button class="agregar" data-id="2" data-nombre="Juguete para gatos" data-precio="5.00">Agregar al carrito</button>
+  </div>
+  <div class="producto">
+    <h3>Cama para mascotas</h3>
+    <p>Precio: $20.00</p>
+    <button class="agregar" data-id="3" data-nombre="Cama para mascotas" data-precio="20.00">Agregar al carrito</button>
+  </div>
+  
+  <!-- Carrito -->
+  <h2>Carrito</h2>
+  <div id="contenido-carrito"></div>
+
+  <!-- Archivo JavaScript -->
+  <script src="carrito.js"></script>
+</body>
+</html>

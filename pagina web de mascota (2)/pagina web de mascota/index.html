@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementos para Perros</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.6.0/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylecarrito.css">
+    
+
+    
+    <style>
+        /* Estilo del menú horizontal */
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #ece4e4;
+        }
+
+        nav ul li a:hover {
+            background-color: #e71616;
+        }
+
+        /* Estilo del carrito */
+        #cart-icon {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        #cart-icon img {
+            width: 30px;
+            height: 30px;
+        }
+        
+        /* Estilo de la sección de productos */
+        .productos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .producto {
+            width: 200px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .producto img {
+            width: 100%;
+            height: auto;
+        }
+         /* Estilo para la sección de inicio */
+        #inicio {
+            height: 100vh; /* Altura completa de la ventana */
+            background-size: cover; /* Ajusta para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-attachment: fixed; /* Hace que la imagen no se desplace con el scroll */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: rgb(14, 13, 13);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+            padding: 0 20px;
+        }
+
+        #inicio h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        #inicio p {
+            font-size: 22px;
+            max-width: 600px;
+        }
+
+        /* Para mantener un pie de página al final */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #020202; /* Un color de fondo para el pie de página */
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        #inicio {
+    height: 100vh; /* Toda la altura de la ventana */
+    background-color: #6195f4; /* Color de fondo sólido (puedes cambiar este código de color) */
+    background-size: cover; /* Que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* La imagen no se desplaza con el scroll */
+    display: flex; /* Activa Flexbox */
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    text-align: center; /* Alinea el texto al centro */
+    color: white; /* Color del texto */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Sombra para texto legible */
+    padding: 0 20px; /* Espacio lateral para evitar que se corte en pantallas pequeñas */
+}
+/* Estilo del carrito en la página principal */
+#carrito {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #carrito img {
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+        }
+        #carrito span {
+            font-weight: bold;
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+  
+
+    <!-- Sección de Menu -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="mostrarSeccion('inicio')">Inicio</a></li>
+                <li><a href="#" onclick="mostrarSeccion('collares')">Collares</a></li>
+                <li><a href="#" onclick="mostrarSeccion('juguetes')">Juguetes</a></li>
+                <li><a href="#" onclick="mostrarSeccion('alimentacion')">Alimentación</a></li>
+                <li><a href="#" onclick="mostrarSeccion('acercaDeNosotros')">Acerca de Nosotros</a></li>
+                <li style="margin-left:auto;"><a href="contacto.html">Contacto</a></li>
+                
+                
+            </ul>
+        </nav>
+    </header>
+        
+       <!-- Ícono del carrito -->
+    <a id="carrito" href="carrito decompras.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito">
+        <span id="cantidad-carrito">0</span>
+    </a>
+    
+    
+    
+
+<!-- Modal del carrito -->
+<div id="modal-carrito" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h2>Carrito de Compras</h2>
+        <ul id="lista-carrito"></ul>
+        <p id="total-carrito">Total: 0 COP</p>
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
+        <button onclick="cerrarCarrito()">Cerrar</button>
+    </div>
+</div>
+
+    </header>
+  <!-- Sección de Inicio -->
+   
+  <section id="inicio" class="seccion" style="height: 100vh; background-image: ">
+
+    <div class="imagen-bienvenida" style="display: block; text-align: center;">
+        <img src="imagenesb/perro.jpg" alt="">
+</div>
+
+
+    <center><h1>Bienvenidos a la Tienda de Implementos para Perros</h1></center>
+    <center><p>En nuestra tienda encontrarás todo lo que necesitas para tu mascota: collares, juguetes, alimentación y mucho más. ¡Disfruta de las mejores ofertas para tu perro!</p></center>
+</section>
+
+    
+<!-- Sección de Acerca de Nosotros -->
+<section id="acercaDeNosotros" class="seccion" style="display:none; text-align: center; padding: 40px 20px;">
+    <h2 style="font-size: 36px; margin-bottom: 20px;">Acerca de Nosotros</h2>
+    
+    <p style="font-size: 24px; margin-bottom: 30px; font-weight: bold;">¡Bienvenidos a la Tienda de Implementos para Perros! 🐾</p>
+    
+    <p style="font-size: 18px; line-height: 1.6; max-width: 800px; margin: 0 auto 30px;">
+        Somos una tienda apasionada por el bienestar de tus mascotas, especialmente de esos compañeros de cuatro patas que siempre están a tu lado. Nuestra misión es ofrecerte una experiencia única, brindando los mejores productos para tu perro, desde collares elegantes hasta alimentos de alta calidad que mantienen a tu mascota sana y feliz.
+    </p>
+    
+    <p style="font-size: 18px; line-height: 1.6; max-width: 800px; margin: 0 auto 30px;">
+        En Tienda de Implementos para Perros, nos enorgullece contar con una amplia gama de artículos, cuidadosamente seleccionados, que no solo cumplen con los estándares más altos de calidad, sino que también reflejan nuestra pasión por el mundo canino. Ya sea que estés buscando un juguete divertido, un collar a la moda o la mejor comida para tu perro, ¡aquí lo encuentras!
+    </p>
+
+    <h3 style="font-size: 30px; margin-bottom: 20px;">¿Por qué elegirnos?</h3>
+    
+    <ul style="list-style-type: none; padding: 0; font-size: 18px; line-height: 1.6; margin: 0 auto; max-width: 800px;">
+        <li style="margin-bottom: 15px;">✅ <strong>Variedad de productos</strong> para todas las necesidades de tu perro.</li>
+        <li style="margin-bottom: 15px;">🌟 <strong>Calidad premium</strong> en cada artículo, porque tu mascota se lo merece.</li>
+        <li style="margin-bottom: 15px;">🚚 <strong>Envíos rápidos</strong> para que tu perro disfrute de su nuevo accesorio lo antes posible.</li>
+        <li style="margin-bottom: 15px;">❤️ <strong>Atención personalizada</strong>, porque sabemos lo importante que es tu mascota para ti.</li>
+    </ul>
+
+    <p style="font-size: 18px; line-height: 1.6; max-width: 800px; margin: 0 auto;">
+        Nos preocupamos profundamente por el bienestar de tu perro, y nuestra tienda es el lugar perfecto para encontrar todo lo que necesita para tener una vida activa, saludable y llena de amor. ¡Te invitamos a descubrir lo mejor para tu mejor amigo!
+    </p>
+</section>
+
+
+ <!-- Sección de Collares -->
+<section id="collares" class="seccion">
+    <center><h2>Collares para Perros</h2></center>
+    <center><p>Encuentra los mejores collares para tu perro en diferentes tamaños y colores.</p></center>
+    <div class="productos">
+        <div class="producto">
+            <img src="imagenes/collar1.jpg" alt="Collar de cuero">
+            <p>Collar de cuero</p>
+            <p class="precio">69,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar2.jpg" alt="Collar de tela">
+            <p>Collar de tela</p>
+            <p class="precio">45,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar3.jpg" alt="Collar de nylon">
+            <p>Collar de nylon</p>
+            <p class="precio">52,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar4.jpg" alt="Collar con diseño">
+            <p>Collar con diseño</p>
+            <p class="precio">78,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar5.jpg" alt="Collar reflectante">
+            <p>Collar reflectante</p>
+            <p class="precio">60,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar6.jpg" alt="Collar de cuero negro">
+            <p>Collar de cuero negro</p>
+            <p class="precio">72,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar7.jpg" alt="Collar ajustable">
+            <p>Collar ajustable</p>
+            <p class="precio">43,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar8.jpg" alt="Collar con medalla">
+            <p>Collar con medalla</p>
+            <p class="precio">62,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar9.jpg" alt="Collar de lujo">
+            <p>Collar de lujo</p>
+            <p class="precio">87,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar10.jpg" alt="Collar de tela suave">
+            <p>Collar de tela suave</p>
+            <p class="precio">50,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar11.jpg" alt="Collar con correa">
+            <p>Collar con correa</p>
+            <p class="precio">77,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenes/collar12.jpg" alt="Collar deportivo">
+            <p>Collar deportivo</p>
+            <p class="precio">85,990 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Juguetes -->
+<section id="juguetes" class="seccion" style="display:none;">
+    <center><h2>Juguetes para Perros</h2></center>
+    <center><p>Juguetes que harán feliz a tu perro mientras se ejercita.</p></center>
+    <div class="productos">
+        <div class="producto">
+            <img src="imagenesj/juguete1.jpg" alt="Pelota interactiva">
+            <p>Pelota interactiva</p>
+            <p class="precio">35,156 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete2.jpg" alt="Frisbee de plástico">
+            <p>Frisbee de plástico</p>
+            <p class="precio">24,156 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete3.jpg" alt="Hueso de goma">
+            <p>Hueso de goma</p>
+            <p class="precio">30,756 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete4.jpg" alt="Pelota de tenis">
+            <p>Pelota de tenis</p>
+            <p class="precio">17,556 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete5.jpg" alt="Frisbee de caucho">
+            <p>Frisbee de caucho</p>
+            <p class="precio">37,356 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete6.jpg" alt="Soga para perros">
+            <p>Soga para perros</p>
+            <p class="precio">19,800 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete7.jpg" alt="Pelota con sonido">
+            <p>Pelota con sonido</p>
+            <p class="precio">39,600 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete8.jpg" alt="Juguete con cuerda">
+            <p>Juguete con cuerda</p>
+            <p class="precio">25,476 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete9.jpg" alt="Peluche para morder">
+            <p>Peluche para morder</p>
+            <p class="precio">52,800 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete10.jpg" alt="Pelota interactiva">
+            <p>Pelota interactiva</p>
+            <p class="precio">49,500 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete11.jpg" alt="Juguete flotante">
+            <p>Juguete flotante</p>
+            <p class="precio">44,000 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesj/juguete12.jpg" alt="Hueso de caucho">
+            <p>Hueso de caucho</p>
+            <p class="precio">28,800 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+    </div>
+</section>
+<!-- Sección de Alimentación -->
+<section id="alimentacion" class="seccion" style="display:none;">
+    <center><h2>Alimentación para Perros</h2></center>
+    <center><p>Comida saludable y balanceada para perros de todas las razas.</p></center>
+    <div class="productos">
+        <div class="producto">
+            <img src="imagenesA/alimento1.jpg" alt="Comida premium">
+            <p>Comida premium</p>
+            <p class="precio">123,996 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento2.jpg" alt="Snacks naturales">
+            <p>Snacks naturales</p>
+            <p class="precio">51,600 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento3.jpg" alt="Comida seca">
+            <p>Comida seca para perros</p>
+            <p class="precio">103,996 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento4.jpg" alt="Comida húmeda">
+            <p>Comida húmeda</p>
+            <p class="precio">74,880 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento5.jpg" alt="Barras energéticas">
+            <p>Barras energéticas para perros</p>
+            <p class="precio">24,960 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento6.jpg" alt="Snacks de pollo">
+            <p>Snacks de pollo</p>
+            <p class="precio">35,376 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento7.jpg" alt="Alimento balanceado">
+            <p>Alimento balanceado</p>
+            <p class="precio">91,680 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento8.jpg" alt="Comida natural">
+            <p>Comida natural</p>
+            <p class="precio">87,996 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento9.jpg" alt="Pechos de pollo">
+            <p>Pechos de pollo deshidratados</p>
+            <p class="precio">62,700 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento10.jpg" alt="Comida orgánica">
+            <p>Comida orgánica para perros</p>
+            <p class="precio">125,100 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento11.jpg" alt="Snacks de cordero">
+            <p>Snacks de cordero</p>
+            <p class="precio">41,580 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+        <div class="producto">
+            <img src="imagenesA/alimento12.jpg" alt="Comida para perros pequeños">
+            <p>Comida para perros pequeños</p>
+            <p class="precio">77,220 COP</p>
+            <input type="number" value="1" min="1">
+            <button>Agregar</button>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <p>&copy; 2024 Tienda de Implementos para Perros. Todos los derechos reservados.</p>
+</footer>
+
+<style>
+    footer {
+        text-align: center;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f0f0f0; /* Un color de fondo para el pie de página */
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+
+    <script src="script.js"></script>
+</body>
+</html>
